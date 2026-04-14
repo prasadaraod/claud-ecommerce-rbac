@@ -34,6 +34,7 @@ const login = async (req, res) => {
     );
 
     if (!rows.length) {
+        console.log('no matching emailid');
       return error(res, 'Invalid email or password', 401);
     }
 
@@ -45,6 +46,7 @@ const login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, user.password_hash);
     if (!isMatch) {
+        console.log('email password not match');
       return error(res, 'Invalid email or password', 401);
     }
 
